@@ -10,13 +10,22 @@ SET(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 SET(OpenGL_GL_PREFERENCE GLVND)
 
 ADD_SUBDIRECTORY(/home/blake/glfw /home/blake/glfw/src)
-ADD_SUBDIRECTORY(/home/blake/openal-soft /home/blake/openal-soft/include)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/imgui)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/imgui/backends)
 
 FIND_PACKAGE(OpenGL REQUIRED)
 
-SET(SOURCE_FILES src/main.cpp)
+SET(SOURCE_FILES
+    src/main.cpp
+    imgui/imgui.cpp
+    imgui/imgui_draw.cpp
+    imgui/imgui_tables.cpp
+    imgui/imgui_widgets.cpp
+    imgui/backends/imgui_impl_glfw.cpp
+    imgui/backends/imgui_impl_opengl3.cpp
+)
 
 ADD_EXECUTABLE(leibniz ${SOURCE_FILES})
 TARGET_LINK_LIBRARIES(leibniz glfw)
 TARGET_LINK_LIBRARIES(leibniz OpenGL::GL)
-TARGET_LINK_LIBRARIES(leibniz OpenAL::OpenAL)
+

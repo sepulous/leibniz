@@ -1,0 +1,21 @@
+# Hashes of file build rules.
+b764eefab03a4395988423d27cdc39b7 /home/blake/glfw/src/CMakeFiles/uninstall
+acfa03b657369fbe7490b3017614c12d /home/blake/glfw/src/src/CMakeFiles/update_mappings
+19e475777c2007513a8e29006510bb93 /home/blake/glfw/src/src/fractional-scale-v1-client-protocol-code.h
+78846adf26134a10136fc5b7a1749757 /home/blake/glfw/src/src/fractional-scale-v1-client-protocol.h
+63627cb82598d1b4d72eebd9878c48a6 /home/blake/glfw/src/src/idle-inhibit-unstable-v1-client-protocol-code.h
+d513f6a56ea48fac79dc5d84b5df27d3 /home/blake/glfw/src/src/idle-inhibit-unstable-v1-client-protocol.h
+ab82e46a8a92b097b6c2c5159c18b109 /home/blake/glfw/src/src/pointer-constraints-unstable-v1-client-protocol-code.h
+13c220b40f6cfafd4be44c422d91d170 /home/blake/glfw/src/src/pointer-constraints-unstable-v1-client-protocol.h
+77f77fb4e4908aa89e7c0606f85f804d /home/blake/glfw/src/src/relative-pointer-unstable-v1-client-protocol-code.h
+18997a95aebd9fd43484f959b0c602c6 /home/blake/glfw/src/src/relative-pointer-unstable-v1-client-protocol.h
+a6c0343f74dbbfc45ae22c43427b2377 /home/blake/glfw/src/src/viewporter-client-protocol-code.h
+bf80adfb8a28bbdfb5bacea3a12ae1de /home/blake/glfw/src/src/viewporter-client-protocol.h
+424d0f73efa453b5eba336f7533ff4e2 /home/blake/glfw/src/src/wayland-client-protocol-code.h
+af0f056b583f3a78155fa1588cc24dab /home/blake/glfw/src/src/wayland-client-protocol.h
+2881ac38ad226af468c0fd3bbad59cb7 /home/blake/glfw/src/src/xdg-activation-v1-client-protocol-code.h
+66deebb3cb0010a2c31fdb0cbd1e8c76 /home/blake/glfw/src/src/xdg-activation-v1-client-protocol.h
+5f360dd3c4c708d28ddbfb54a8ddaac4 /home/blake/glfw/src/src/xdg-decoration-unstable-v1-client-protocol-code.h
+ee05213de51093d2e21cd95b362e1253 /home/blake/glfw/src/src/xdg-decoration-unstable-v1-client-protocol.h
+51ec3cab0d983cc60e12be95f96d85b6 /home/blake/glfw/src/src/xdg-shell-client-protocol-code.h
+6d91805d98f8883ca9be86c9bdeb22e0 /home/blake/glfw/src/src/xdg-shell-client-protocol.h
