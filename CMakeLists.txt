@@ -26,7 +26,6 @@ FIND_PACKAGE(OpenGL REQUIRED)
 
 SET(SOURCE_FILES
     src/main.cpp
-    src/fractals.cpp
     glad/src/glad.c
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
