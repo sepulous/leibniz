@@ -1,5 +1,13 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.7)
-PROJECT(leibniz)
+
+PROJECT(leibniz VERSION 1.0.0)
+SET(LEIBNIZ_BUILD "alpha") # Lowercase, complete word (see version.h.in)
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/version.h.in"
+    "${PROJECT_BINARY_DIR}/version.h"
+)
+INCLUDE_DIRECTORIES("${PROJECT_BINARY_DIR}")
 
 SET(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_BUILD_TYPE DEBUG)
@@ -12,11 +20,14 @@ SET(OpenGL_GL_PREFERENCE GLVND)
 ADD_SUBDIRECTORY(/home/blake/glfw /home/blake/glfw/src)
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/imgui)
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/imgui/backends)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/glad/include)
 
 FIND_PACKAGE(OpenGL REQUIRED)
 
 SET(SOURCE_FILES
     src/main.cpp
+    src/fractals.cpp
+    glad/src/glad.c
     imgui/imgui.cpp
     imgui/imgui_draw.cpp
     imgui/imgui_tables.cpp

@@ -1,0 +1,5 @@
+#define LEIBNIZ_VERSION "@leibniz_VERSION_MAJOR@.@leibniz_VERSION_MINOR@.@leibniz_VERSION_PATCH@"
+#define LEIBNIZ_BUILD "@LEIBNIZ_BUILD@"
+#define ALPHA "alpha"
+#define BETA "beta"
+#define RELEASE "release"
