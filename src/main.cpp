@@ -25,7 +25,7 @@ ImVec2 display_col_size;
 // State variables
 Fractal selected_fractal = Fractal::MANDELBROT;
 ImVec2 fractal_pos = ImVec2(0.0, 0.0);
-float fractal_zoom = 2.0;
+float fractal_zoom = 1.0;
 ImVec2 last_mouse_pos;
 bool rendering = false;
 
@@ -73,12 +73,12 @@ int main()
 
         // Handle drag
         ImVec2 mousePos = ImGui::GetMousePos();
-        if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+        if (rendering && ImGui::IsMouseDown(ImGuiMouseButton_Left))
         {
             if (mousePos.x > display_w * CONTROL_COL_WIDTH)
             {
-                fractal_pos.x -= (0.0005 * fractal_zoom) * (mousePos.x - last_mouse_pos.x);
-                fractal_pos.y += (0.0005 * fractal_zoom) * (mousePos.y - last_mouse_pos.y);
+                fractal_pos.x -= (0.0005 / fractal_zoom) * (mousePos.x - last_mouse_pos.x);
+                fractal_pos.y += (0.0005 / fractal_zoom) * (mousePos.y - last_mouse_pos.y);
             }
         }
         last_mouse_pos = mousePos;
@@ -217,9 +217,9 @@ void renderFractal(const char* name)
 void adjustFractalZoom(GLFWwindow* window, double xoffset, double y_offset)
 {
     if (y_offset == 1)
-        fractal_zoom *= zoom_sensitivity; // Zoom in
-    else if (y_offset == -1)
         fractal_zoom *= (1 + zoom_sensitivity); // Zoom out
+    else if (y_offset == -1)
+        fractal_zoom *= zoom_sensitivity; // Zoom in
 }
 
 void renderControlColumn()
@@ -254,6 +254,12 @@ void renderControlColumn()
         rendering = true;
         renderSelectedFractal();
     }
+
+    auto remaining_height = ImGui::GetContentRegionAvail().y;
+    auto space_needed = ImGui::CalcTextSize("Position: (").y + ImGui::CalcTextSize("Zoom:").y;
+    moveCursorScreenPos(0, remaining_height - space_needed - 10);
+    ImGui::Text("Position: (%f, %f)", fractal_pos.x, fractal_pos.y);
+    ImGui::Text("Zoom: %.8f", fractal_zoom);
 }
 
 void renderSelectedFractal()
