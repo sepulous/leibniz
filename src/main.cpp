@@ -33,7 +33,8 @@ void renderFractal(const char* name);
 void adjustFractalZoom(GLFWwindow* window, double xoffset, double y_offset);
 void renderControlColumn();
 void renderSelectedFractal();
-void moveCursorPos(float deltaX, float deltaY);
+void moveCursorPos(float delta_x, float delta_y);
+void moveCursorScreenPos(float delta_x, float delta_y);
 void checkCompileErrors(GLuint shader, std::string type);
 
 int main()
@@ -190,16 +191,16 @@ void renderFractal(const char* name)
     glEnableVertexAttribArray(0);
 
     int padding = 20;
+    int bottom_padding = ImGui::GetStyle().WindowPadding.y + ImGui::CalcTextSize("Display").y;
     ImVec2 render_size = ImVec2(display_col_size.x - 2 * padding,
-                               display_col_size.y - 2 * padding);
-    ImVec2 render_pos = ImVec2(display_col_pos.x + padding,
-                               display_col_pos.y + padding);
-    ImGui::SetCursorScreenPos(render_pos);
+                               display_col_size.y - bottom_padding);
+    moveCursorScreenPos(padding, 0);
+    ImVec2 cursor_pos = ImGui::GetCursorScreenPos();
     ImGui::InvisibleButton("##empty", render_size);
 
-    glViewport(render_pos.x, render_pos.y, render_size.x, render_size.y);
+    glViewport(cursor_pos.x, cursor_pos.y, render_size.x, render_size.y);
     glEnable(GL_SCISSOR_TEST);
-    glScissor(render_pos.x, render_pos.y, render_size.x, render_size.y);
+    glScissor(cursor_pos.x, cursor_pos.y, render_size.x, render_size.y);
 
     // Use the shader program and update uniforms
     glUseProgram(shader_program);
@@ -268,12 +269,20 @@ void renderSelectedFractal()
     }
 }
 
-void moveCursorPos(float deltaX, float deltaY)
+void moveCursorPos(float delta_x, float delta_y)
 {
     auto cursor_pos = ImGui::GetCursorPos();
-    cursor_pos.x += deltaX;
-    cursor_pos.y += deltaY;
+    cursor_pos.x += delta_x;
+    cursor_pos.y += delta_y;
     ImGui::SetCursorPos(cursor_pos);
+}
+
+void moveCursorScreenPos(float delta_x, float delta_y)
+{
+    auto cursor_pos = ImGui::GetCursorScreenPos();
+    cursor_pos.x += delta_x;
+    cursor_pos.y += delta_y;
+    ImGui::SetCursorScreenPos(cursor_pos);
 }
 
 void checkCompileErrors(GLuint shader, std::string type)
