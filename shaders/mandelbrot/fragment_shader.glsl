@@ -12,11 +12,15 @@ precise int renderMandelbrot()
     vec2 uv = (gl_FragCoord.xy / u_resolution - 0.5) * u_zoom + u_center;
     vec2 c = uv;
     vec2 z = vec2(0.0);
+    float zx_squared;
+    float zy_squared;
     int i;
     for (i = 0; i < MAX_ITERATIONS; i++)
     {
-        z = vec2(z.x * z.x - z.y * z.y + c.x, 2.0 * z.x * z.y + c.y);
-        if (z.x*z.x + z.y*z.y > 4.0) break;
+        zx_squared = z.x * z.x;
+        zy_squared = z.y * z.y;
+        z = vec2(zx_squared - zy_squared + c.x, 2.0 * z.x * z.y + c.y);
+        if (zx_squared + zy_squared > 4.0) break;
     }
     return i;
 }
